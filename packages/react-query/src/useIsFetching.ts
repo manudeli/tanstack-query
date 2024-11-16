@@ -12,13 +12,17 @@ export function useIsFetching(
   const client = useQueryClient(queryClient)
   const queryCache = client.getQueryCache()
 
+  const getSnapshot = React.useCallback(
+    () => client.isFetching(filters),
+    [client, filters],
+  )
   return React.useSyncExternalStore(
     React.useCallback(
       (onStoreChange) =>
         queryCache.subscribe(notifyManager.batchCalls(onStoreChange)),
       [queryCache],
     ),
-    () => client.isFetching(filters),
-    () => client.isFetching(filters),
+    getSnapshot,
+    getSnapshot,
   )
 }

@@ -35,14 +35,18 @@ export function useMutation<
     observer.setOptions(options)
   }, [observer, options])
 
+  const getSnapshot = React.useCallback(
+    () => observer.getCurrentResult(),
+    [observer],
+  )
   const result = React.useSyncExternalStore(
     React.useCallback(
       (onStoreChange) =>
         observer.subscribe(notifyManager.batchCalls(onStoreChange)),
       [observer],
     ),
-    () => observer.getCurrentResult(),
-    () => observer.getCurrentResult(),
+    getSnapshot,
+    getSnapshot,
   )
 
   const mutate = React.useCallback<

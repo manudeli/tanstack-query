@@ -56,6 +56,7 @@ export function useMutationState<TResult = MutationState>(
     optionsRef.current = options
   })
 
+  const getSnapshot = React.useCallback(() => result.current, [])
   return React.useSyncExternalStore(
     React.useCallback(
       (onStoreChange) =>
@@ -71,7 +72,7 @@ export function useMutationState<TResult = MutationState>(
         }),
       [mutationCache],
     ),
-    () => result.current,
-    () => result.current,
+    getSnapshot,
+    getSnapshot,
   )!
 }

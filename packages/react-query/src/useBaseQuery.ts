@@ -84,6 +84,10 @@ export function useBaseQuery<
 
   const result = observer.getOptimisticResult(defaultedOptions)
 
+  const getSnapshot = React.useCallback(
+    () => observer.getCurrentResult(),
+    [observer],
+  )
   React.useSyncExternalStore(
     React.useCallback(
       (onStoreChange) => {
@@ -99,8 +103,8 @@ export function useBaseQuery<
       },
       [observer, isRestoring],
     ),
-    () => observer.getCurrentResult(),
-    () => observer.getCurrentResult(),
+    getSnapshot,
+    getSnapshot,
   )
 
   React.useEffect(() => {

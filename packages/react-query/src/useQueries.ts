@@ -277,6 +277,10 @@ export function useQueries<
       (options as QueriesObserverOptions<TCombinedResult>).combine,
     )
 
+  const getSnapshot = React.useCallback(
+    () => observer.getCurrentResult(),
+    [observer],
+  )
   React.useSyncExternalStore(
     React.useCallback(
       (onStoreChange) =>
@@ -285,8 +289,8 @@ export function useQueries<
           : observer.subscribe(notifyManager.batchCalls(onStoreChange)),
       [observer, isRestoring],
     ),
-    () => observer.getCurrentResult(),
-    () => observer.getCurrentResult(),
+    getSnapshot,
+    getSnapshot,
   )
 
   React.useEffect(() => {
