@@ -10,10 +10,10 @@ import type {
 type UseInfiniteQueryOptionsOmitted<
   TQueryFnData = unknown,
   TError = unknown,
-  TData = TQueryFnData,
+  TData = InfiniteData<TQueryFnData>,
   TQueryKey extends QueryKey = QueryKey,
 > = OmitKeyof<
-  UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryFnData, TQueryKey>,
+  UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
   'onSuccess' | 'onError' | 'onSettled' | 'refetchInterval'
 >
 
@@ -25,7 +25,7 @@ type ProhibitedInfiniteQueryOptionsKeyInV5 = keyof Pick<
 export type UndefinedInitialDataInfiniteOptions<
   TQueryFnData,
   TError = unknown,
-  TData = TQueryFnData,
+  TData = InfiniteData<TQueryFnData>,
   TQueryKey extends QueryKey = QueryKey,
 > = UseInfiniteQueryOptionsOmitted<TQueryFnData, TError, TData, TQueryKey> & {
   initialData?: undefined

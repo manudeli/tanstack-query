@@ -17,13 +17,7 @@ export function createInfiniteQuery<
   TData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 >(
-  options: CreateInfiniteQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryFnData,
-    TQueryKey
-  >,
+  options: CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
 ): CreateInfiniteQueryResult<TData, TError>
 export function createInfiniteQuery<
   TQueryFnData = unknown,
@@ -33,13 +27,7 @@ export function createInfiniteQuery<
 >(
   queryKey: TQueryKey,
   options?: Omit<
-    CreateInfiniteQueryOptions<
-      TQueryFnData,
-      TError,
-      TData,
-      TQueryFnData,
-      TQueryKey
-    >,
+    CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     'queryKey'
   >,
 ): CreateInfiniteQueryResult<TData, TError>
@@ -52,13 +40,7 @@ export function createInfiniteQuery<
   queryKey: TQueryKey,
   queryFn: QueryFunction<TQueryFnData, TQueryKey>,
   options?: Omit<
-    CreateInfiniteQueryOptions<
-      TQueryFnData,
-      TError,
-      TData,
-      TQueryFnData,
-      TQueryKey
-    >,
+    CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     'queryKey' | 'queryFn'
   >,
 ): CreateInfiniteQueryResult<TData, TError>
@@ -71,29 +53,11 @@ export function createInfiniteQuery<
 >(
   arg1:
     | TQueryKey
-    | CreateInfiniteQueryOptions<
-        TQueryFnData,
-        TError,
-        TData,
-        TQueryFnData,
-        TQueryKey
-      >,
+    | CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
   arg2?:
     | QueryFunction<TQueryFnData, TQueryKey>
-    | CreateInfiniteQueryOptions<
-        TQueryFnData,
-        TError,
-        TData,
-        TQueryFnData,
-        TQueryKey
-      >,
-  arg3?: CreateInfiniteQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryFnData,
-    TQueryKey
-  >,
+    | CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
+  arg3?: CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
 ): CreateInfiniteQueryResult<TData, TError> {
   const options = parseQueryArgs(arg1, arg2, arg3)
   return createBaseQuery(

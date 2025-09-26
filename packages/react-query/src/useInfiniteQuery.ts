@@ -22,13 +22,7 @@ export function useInfiniteQuery<
   TData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 >(
-  options: UseInfiniteQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryFnData,
-    TQueryKey
-  > & {
+  options: UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey> & {
     initialData:
       | NonUndefinedGuard<InfiniteData<TQueryFnData>>
       | (() => NonUndefinedGuard<InfiniteData<TQueryFnData>>)
@@ -41,13 +35,7 @@ export function useInfiniteQuery<
   TData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 >(
-  options: UseInfiniteQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryFnData,
-    TQueryKey
-  >,
+  options: UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
 ): UseInfiniteQueryResult<TData, TError>
 /** @deprecated This function overload will be removed in the next major version. */
 export function useInfiniteQuery<
@@ -58,13 +46,7 @@ export function useInfiniteQuery<
 >(
   queryKey: TQueryKey,
   options?: Omit<
-    UseInfiniteQueryOptions<
-      TQueryFnData,
-      TError,
-      TData,
-      TQueryFnData,
-      TQueryKey
-    >,
+    UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     'queryKey'
   >,
 ): UseInfiniteQueryResult<TData, TError>
@@ -78,13 +60,7 @@ export function useInfiniteQuery<
   queryKey: TQueryKey,
   queryFn: QueryFunction<TQueryFnData, TQueryKey>,
   options?: Omit<
-    UseInfiniteQueryOptions<
-      TQueryFnData,
-      TError,
-      TData,
-      TQueryFnData,
-      TQueryKey
-    >,
+    UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     'queryKey' | 'queryFn'
   >,
 ): UseInfiniteQueryResult<TData, TError>
@@ -96,29 +72,11 @@ export function useInfiniteQuery<
 >(
   arg1:
     | TQueryKey
-    | UseInfiniteQueryOptions<
-        TQueryFnData,
-        TError,
-        TData,
-        TQueryFnData,
-        TQueryKey
-      >,
+    | UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
   arg2?:
     | QueryFunction<TQueryFnData, TQueryKey>
-    | UseInfiniteQueryOptions<
-        TQueryFnData,
-        TError,
-        TData,
-        TQueryFnData,
-        TQueryKey
-      >,
-  arg3?: UseInfiniteQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryFnData,
-    TQueryKey
-  >,
+    | UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
+  arg3?: UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
 ): UseInfiniteQueryResult<TData, TError> {
   const options = parseQueryArgs(arg1, arg2, arg3)
   return useBaseQuery(

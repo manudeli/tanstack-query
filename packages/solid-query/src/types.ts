@@ -90,7 +90,6 @@ export interface CreateInfiniteQueryOptions<
   TQueryFnData = unknown,
   TError = unknown,
   TData = TQueryFnData,
-  TQueryData = TQueryFnData,
   TQueryKey extends () => readonly unknown[] = SolidQueryKey,
 > extends ContextOptions,
     Omit<
@@ -98,7 +97,6 @@ export interface CreateInfiniteQueryOptions<
         TQueryFnData,
         TError,
         TData,
-        TQueryData,
         ReturnType<TQueryKey>
       >,
       'queryKey'

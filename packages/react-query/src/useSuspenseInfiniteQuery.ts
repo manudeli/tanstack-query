@@ -19,13 +19,7 @@ export type UseSuspenseInfiniteQueryOptions<
   TQueryKey extends QueryKey = QueryKey,
 > = WithRequired<
   OmitKeyof<
-    UseInfiniteQueryOptions<
-      TQueryFnData,
-      TError,
-      TData,
-      TQueryFnData,
-      TQueryKey
-    >,
+    UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     | 'suspense'
     | 'useErrorBoundary'
     | 'enabled'

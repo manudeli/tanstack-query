@@ -25,13 +25,12 @@ export class InfiniteQueryObserver<
   TQueryFnData = unknown,
   TError = unknown,
   TData = TQueryFnData,
-  TQueryData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 > extends QueryObserver<
   TQueryFnData,
   TError,
   InfiniteData<TData>,
-  InfiniteData<TQueryData>,
+  InfiniteData<TQueryFnData>,
   TQueryKey
 > {
   // Type override
@@ -54,7 +53,6 @@ export class InfiniteQueryObserver<
       TQueryFnData,
       TError,
       TData,
-      TQueryData,
       TQueryKey
     >,
   ) {
@@ -72,7 +70,6 @@ export class InfiniteQueryObserver<
       TQueryFnData,
       TError,
       TData,
-      TQueryData,
       TQueryKey
     >,
     notifyOptions?: NotifyOptions,
@@ -91,7 +88,6 @@ export class InfiniteQueryObserver<
       TQueryFnData,
       TError,
       TData,
-      TQueryData,
       TQueryKey
     >,
   ): InfiniteQueryObserverResult<TData, TError> {
@@ -128,12 +124,11 @@ export class InfiniteQueryObserver<
   }
 
   protected createResult(
-    query: Query<TQueryFnData, TError, InfiniteData<TQueryData>, TQueryKey>,
+    query: Query<TQueryFnData, TError, InfiniteData<TQueryFnData>, TQueryKey>,
     options: InfiniteQueryObserverOptions<
       TQueryFnData,
       TError,
       TData,
-      TQueryData,
       TQueryKey
     >,
   ): InfiniteQueryObserverResult<TData, TError> {

@@ -20,13 +20,7 @@ export function createInfiniteQuery<
   TData = TQueryFnData,
   TQueryKey extends SolidQueryKey = SolidQueryKey,
 >(
-  options: CreateInfiniteQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryFnData,
-    TQueryKey
-  >,
+  options: CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
 ): CreateInfiniteQueryResult<TData, TError>
 export function createInfiniteQuery<
   TQueryFnData = unknown,
@@ -36,13 +30,7 @@ export function createInfiniteQuery<
 >(
   queryKey: TQueryKey,
   options?: Omit<
-    CreateInfiniteQueryOptions<
-      TQueryFnData,
-      TError,
-      TData,
-      TQueryFnData,
-      TQueryKey
-    >,
+    CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     'queryKey'
   >,
 ): CreateInfiniteQueryResult<TData, TError>
@@ -55,13 +43,7 @@ export function createInfiniteQuery<
   queryKey: TQueryKey,
   queryFn: QueryFunction<TQueryFnData, ReturnType<TQueryKey>>,
   options?: Omit<
-    CreateInfiniteQueryOptions<
-      TQueryFnData,
-      TError,
-      TData,
-      TQueryFnData,
-      TQueryKey
-    >,
+    CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     'queryKey' | 'queryFn'
   >,
 ): CreateInfiniteQueryResult<TData, TError>
@@ -73,29 +55,11 @@ export function createInfiniteQuery<
 >(
   arg1:
     | TQueryKey
-    | CreateInfiniteQueryOptions<
-        TQueryFnData,
-        TError,
-        TData,
-        TQueryFnData,
-        TQueryKey
-      >,
+    | CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
   arg2?:
     | QueryFunction<TQueryFnData, ReturnType<TQueryKey>>
-    | CreateInfiniteQueryOptions<
-        TQueryFnData,
-        TError,
-        TData,
-        TQueryFnData,
-        TQueryKey
-      >,
-  arg3?: CreateInfiniteQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryFnData,
-    TQueryKey
-  >,
+    | CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
+  arg3?: CreateInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
 ): CreateInfiniteQueryResult<TData, TError> {
   // The parseQuery Args functions helps normalize the arguments into the correct form.
   // Whatever the parameters are, they are normalized into the correct form.

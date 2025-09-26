@@ -77,16 +77,9 @@ export interface UseInfiniteQueryOptions<
   TQueryFnData = unknown,
   TError = unknown,
   TData = TQueryFnData,
-  TQueryData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 > extends ContextOptions,
-    InfiniteQueryObserverOptions<
-      TQueryFnData,
-      TError,
-      TData,
-      TQueryData,
-      TQueryKey
-    > {}
+    InfiniteQueryObserverOptions<TQueryFnData, TError, TData, TQueryKey> {}
 
 export type UseBaseQueryResult<
   TData = unknown,

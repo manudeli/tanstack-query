@@ -34,6 +34,9 @@ describe('infiniteQueryOptions', () => {
       expectTypeOf(useInfiniteQuery(infiniteQuery.options())).toEqualTypeOf<
         UseInfiniteQueryResult<{ field: string }>
       >()
+      expectTypeOf(
+        useInfiniteQuery(infiniteQuery.options()).data,
+      ).toEqualTypeOf<InfiniteData<{ field: string }> | undefined>()
 
       expectTypeOf(
         useInfiniteQuery({

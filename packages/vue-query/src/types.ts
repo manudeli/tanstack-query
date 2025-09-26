@@ -106,14 +106,12 @@ export type VueInfiniteQueryObserverOptions<
     TQueryFnData,
     TError,
     TData,
-    TQueryData,
     TQueryKey
   >]: Property extends 'queryFn'
     ? InfiniteQueryObserverOptions<
         TQueryFnData,
         TError,
         TData,
-        TQueryData,
         DeepUnwrapRef<TQueryKey>
       >[Property]
     : Property extends 'enabled'
@@ -131,7 +129,6 @@ export type VueInfiniteQueryObserverOptions<
           TQueryFnData,
           TError,
           TData,
-          TQueryData,
           TQueryKey
         >[Property]
       >
