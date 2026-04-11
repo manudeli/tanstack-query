@@ -1,5 +1,15 @@
 # @tanstack/vue-query-devtools
 
+## 6.1.15
+
+### Patch Changes
+
+- Fix Vue SSR devtools cleanup by only registering `unmount()` after `mount()` has run. ([#10439](https://github.com/TanStack/query/pull/10439))
+
+- Updated dependencies [[`b97513f`](https://github.com/TanStack/query/commit/b97513f2888ed1310a5b39bf91d559c5bc6b83e0)]:
+  - @tanstack/vue-query@5.98.0
+  - @tanstack/query-devtools@5.98.0
+
 ## 6.1.14
 
 ### Patch Changes

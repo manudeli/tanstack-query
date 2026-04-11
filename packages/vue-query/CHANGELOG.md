@@ -1,5 +1,16 @@
 # @tanstack/vue-query
 
+## 5.98.0
+
+### Minor Changes
+
+- Add usePrefetchQuery and usePrefetchInfiniteQuery to vue-query. ([#10372](https://github.com/TanStack/query/pull/10372))
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/query-core@5.98.0
+
 ## 5.97.0
 
 ### Patch Changes
