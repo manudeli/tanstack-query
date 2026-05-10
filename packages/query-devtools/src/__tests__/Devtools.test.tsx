@@ -575,4 +575,73 @@ describe('Devtools', () => {
       )
     })
   })
+
+  describe('mutation details', () => {
+    it('should open the mutation details panel when a mutation row is clicked', async () => {
+      const rendered = renderDevtools({ initialIsOpen: true })
+
+      fireEvent.click(rendered.getByText('Mutations'))
+
+      const mutation = queryClient.getMutationCache().build(queryClient, {
+        mutationKey: ['mutation-detail'],
+        mutationFn: () => Promise.resolve('ok'),
+      })
+      mutation.execute({})
+      await vi.advanceTimersByTimeAsync(0)
+
+      fireEvent.click(rendered.getByLabelText(/Mutation submitted at/))
+
+      expect(rendered.getByText('Mutation Details')).toBeInTheDocument()
+    })
+  })
+
+  describe('mutation sort order', () => {
+    it('should toggle the mutation sort order in the mutations view', () => {
+      const rendered = renderDevtools({ initialIsOpen: true })
+      fireEvent.click(rendered.getByText('Mutations'))
+
+      fireEvent.click(rendered.getByLabelText(/Sort order/))
+      const afterFirstToggle = localStorage.getItem(
+        'TanstackQueryDevtools.mutationSortOrder',
+      )
+      expect(afterFirstToggle).not.toBeNull()
+
+      fireEvent.click(rendered.getByLabelText(/Sort order/))
+      const afterSecondToggle = localStorage.getItem(
+        'TanstackQueryDevtools.mutationSortOrder',
+      )
+      expect(afterSecondToggle).not.toBe(afterFirstToggle)
+    })
+  })
+
+  describe('mutation filter', () => {
+    it('should filter mutations by their "mutationKey"', async () => {
+      const rendered = renderDevtools({ initialIsOpen: true })
+      fireEvent.click(rendered.getByText('Mutations'))
+
+      const matching = queryClient.getMutationCache().build(queryClient, {
+        mutationKey: ['filter-match'],
+        mutationFn: () => Promise.resolve('ok'),
+      })
+      const other = queryClient.getMutationCache().build(queryClient, {
+        mutationKey: ['filter-other'],
+        mutationFn: () => Promise.resolve('ok'),
+      })
+      matching.execute({})
+      other.execute({})
+      await vi.advanceTimersByTimeAsync(0)
+
+      expect(rendered.getAllByLabelText(/Mutation submitted at/)).toHaveLength(
+        2,
+      )
+
+      fireEvent.input(rendered.getByLabelText('Filter queries by query key'), {
+        target: { value: 'filter-match' },
+      })
+
+      expect(rendered.getAllByLabelText(/Mutation submitted at/)).toHaveLength(
+        1,
+      )
+    })
+  })
 })
