@@ -1077,4 +1077,16 @@ describe('Devtools', () => {
       ).toBeGreaterThan(initialWidth)
     })
   })
+
+  describe('online toggle', () => {
+    it('should swap the toggle label after the offline button is clicked', () => {
+      const rendered = renderDevtools({ initialIsOpen: true })
+
+      fireEvent.click(rendered.getByLabelText('Mock offline behavior'))
+
+      expect(
+        rendered.getByLabelText('Unset offline mocking behavior'),
+      ).toBeInTheDocument()
+    })
+  })
 })
